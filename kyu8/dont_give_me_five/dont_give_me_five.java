@@ -8,7 +8,6 @@ public class Kata
     {
       for (int j = 10, copia = i; copia != 0; copia /= 10)
       {
-        System.out.println("j = " + j + ".. i = " + i + ".. copia = " + copia + "..cinco: " + cinco);
         if (copia % j == 5 || i % j == (-5))
         {
           cinco = true;
