@@ -1,55 +1,45 @@
 public class PeacefulYard {
     public static boolean peacefulYard(String[] yard, int minDistance) 
     {
-      int row_quantity = yard.length, col_quantity = yard[0].length(), distance, cats = 0, row1, row2, col1, col2;
-      int[] cat_row = new int[row_quantity];
-      int[] cat_col = new int[col_quantity];
-      
-      //Making sure the array is filled with numbers < 0
-      for (int k = 0; k < row_quantity; k++)
-      {
-        cat_row[k] = -1;
-        for (int l = 0; l < col_quantity; l++)
-        {
-          cat_col[l] = -1;
-        }
-      }
-      
+      int row_quantity = yard.length, col_quantity = yard[0].length(), cats = 0, row1 = 0, row2 = 0, col1 = 0, col2 = 0;
+      double distance = 10, new_distance;
       boolean rowcol1 = true;
       String word;
-      for (int i = 0; i < row_quanity; i++)
+      for (int i = row_quantity - 1; i > 0; i--)
       {
         word = yard[i];
-        for (int j = 0; j < col_quantity; j++)
+        for (int j = col_quantity - 1; j > 0; j--)
         {
-          if (word.charAt(j) != '-')
+          if (word.charAt(j) != '-' && rowcol1)
           {
-            cat_row[i] = i;
-            cat_col[j] = j;
-            cats++;
+            row1 = i;
+            col1 = j;
+            rowcol1 = false;
+            System.out.println("1: " + word.charAt(j));
+          }
+          else if (word.charAt(j) != '-' && !rowcol1)
+          {
+            row2 = i;
+            col2 = j;
+            rowcol1 = true;
+            System.out.println("2: " + word.charAt(j));
           }
         }
-      }
-      for (int m = 0; m < row_quantity; m++)
-      {
-        for (int n = 0; n < col_quantity; n++)
+        if (row2 != 0 || col2 != 0)
         {
-          if (cat_row[m] > 0 && cat_col[n] > 0 && rowcol1)
-          {
-            row1 = cat_row[m];
-            col1 = cat_col[n];
-          }
+          new_distance = Math.sqrt((Math.pow((row2 - row1), 2) + Math.pow((col2 - col1), 2)));
+          distance = new_distance < distance ? new_distance : distance;
+          System.out.println("New_distance: " + new_distance + "..Distance: " + distance);
         }
       }
-      int distance = (int)Math.sqrt(Math.pow((row2 - row1), 2) + Math.pow((col2 - col1), 2));
-      System.out.println("Row1: " + row1 + "..Col1: " + col1 + "..Row2: " + row2 + "..Col2: " + col2 + "..Distance: " + distance + "..MinDistance: " + minDistance);
-      if (distance > minDistance)
+      if (row2 == 0 && col2 == 0)
       {
         return true;
       }
-      else
+      if (distance >= minDistance)
       {
-        return false;
+        return true;
       }
+      return false;
     }
 }
