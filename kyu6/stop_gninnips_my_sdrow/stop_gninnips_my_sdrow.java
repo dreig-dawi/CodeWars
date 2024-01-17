@@ -6,7 +6,7 @@ public class SpinWords {
     char letter;
     int letter_quantity = 0, last_word = 0;
     int length = sentence.length();
-    boolean end = false, spinned = false, space_added = false;
+    boolean end = false, spinned = false;
     for (int i = 0; i < length; i ++)
     {
       if (i == length - 1)
@@ -34,17 +34,21 @@ public class SpinWords {
         }
         else
         {
-          for (int j = last_word; j < i; j++)
+          System.out.println("i..: " + i);
+          for (int j = last_word; j <= i; j++)
           {
+            if (sentence.charAt(j) == ' ')
+            {
+              continue;
+            }
             copy += sentence.charAt(j);
             System.out.println("." + copy +".");
           }
         }
-        if (!end && letter_quantity != 0 && !spinned && !space_added)
+        if (!end && letter_quantity != 0 && !spinned)
         {
           copy += " ";
           System.out.println(".." + copy + "..");
-          space_added = true;
         }
         letter_quantity = 0;
         if (spinned)
