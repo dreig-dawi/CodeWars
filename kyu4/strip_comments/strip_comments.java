@@ -4,7 +4,7 @@ public class StripComments {
   {
     System.out.println(text);
     int text_length = text.length();
-    for (int k = 0; k < text_length; k++)
+    for (int k = 0; k < commentSymbols.length; k++)
     {
       System.out.print(".." + commentSymbols[k] + "..");
     }
@@ -17,19 +17,23 @@ public class StripComments {
       if (symbol_check(letter, commentSymbols))
       {
         end_comment = true;
-        result = result.replaceAll("\\s*$", "");
         continue;
       }
       else if (end_comment)
       {
         if (end_check(letter))
         {
+          result = result.replaceAll("\\s*$", "");
           result += '\n';
           end_comment = false;
         }
       }
       else
       {
+        if (end_check(letter))
+        {
+          result = result.replaceAll("\\s*$", "");
+        }
         result += letter;
       }
     }
