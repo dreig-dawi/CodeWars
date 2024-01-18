@@ -1,6 +1,7 @@
 public class Sum {
 
-  public static int arrayPlusArray(int[] arr1, int[] arr2) {
+  public static int arrayPlusArray(int[] arr1, int[] arr2) 
+  {
     int length = arr1.length, result = 0;
     for (int i = 0; i < length; i++)
     {
