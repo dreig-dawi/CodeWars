@@ -25,9 +25,15 @@ public class StripComments {
                 result = result.replaceAll("\\s*$", "");
             }                      
           }
+          System.out.println("salto condicional");
           result += '\n';
           end_comment = false;
         }
+      }
+      else if (letter == '\n')
+      {
+        System.out.prinln("Salto obligado")
+        result += letter;
       }
       else
       {
@@ -35,9 +41,11 @@ public class StripComments {
         {
           result = result.replaceAll("\\s*$", "");
         }
+        System.out.println("añdida letra");
         result += letter;
       }
     }
+    System.out.println("Fin");
     result = result.replaceAll("\\s*$", "");
     return result;
 	}
