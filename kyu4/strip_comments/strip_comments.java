@@ -2,8 +2,11 @@ public class StripComments {
 
 	public static String stripComments(String text, String[] commentSymbols) 
   {
-    System.out.println(text);
     int text_length = text.length();
+    for (int k = 0; k < text_length; k++)
+    {
+      System.out.print(text.charAt(k));
+    }
     String result = "";
     char letter;
     boolean end_comment = false;
@@ -32,15 +35,14 @@ public class StripComments {
       }
       else if (letter == '\n')
       {
-        result = result.replaceAll("\\s*$", ""); 
-        result += letter;
-      }
-      else
-      {
-        if (end_check(letter))
+        if (text.charAt(i - 1) != '\n' && i != 0)
         {
           result = result.replaceAll("\\s*$", "");
         }
+        result += '\n';
+      }
+      else
+      {
         result += letter;
       }
     }
