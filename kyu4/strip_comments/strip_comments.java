@@ -3,10 +3,6 @@ public class StripComments {
 	public static String stripComments(String text, String[] commentSymbols) 
   {
     int text_length = text.length();
-    for (int k = 0; k < text_length; k++)
-    {
-      System.out.print(text.charAt(k));
-    }
     String result = "";
     char letter;
     boolean end_comment = false;
@@ -15,7 +11,7 @@ public class StripComments {
       letter = text.charAt(i);
       if (symbol_check(letter, commentSymbols) && !end_comment)
       {
-        if (i != 0 && text.charAt(i - 1) != '\n')
+        if (double_check(text, i))
         {
           result = result.replaceAll("\\s*$", "");          
         }
@@ -32,7 +28,7 @@ public class StripComments {
       }
       else if (letter == '\n')
       {
-        if (i != 0 && text.charAt(i - 1) != '\n')
+        if (double_check(text, i))
         {
           result = result.replaceAll("\\s*$", "");
         }
@@ -47,7 +43,6 @@ public class StripComments {
     {
       result = result.replaceAll("\\s*$", "");
     }
-    System.out.println("RESULT: " + result);
     return result;
 	}
   
@@ -73,5 +68,10 @@ public class StripComments {
       return true;
     }
     return false;
+  }
+  
+  public static boolean double_check(String text, int n)
+  {
+    return (n != 0 && text.charAt(n - 1) != '\n') ? true : false;
   }
 }
