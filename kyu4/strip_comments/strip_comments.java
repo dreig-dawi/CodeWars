@@ -13,7 +13,7 @@ public class StripComments {
     for (int i = 0; i < text_length; i++)
     {
       letter = text.charAt(i);
-      if (symbol_check(letter, commentSymbols))
+      if (symbol_check(letter, commentSymbols) && !end_comment)
       {
         if (i != 0 && text.charAt(i - 1) != '\n')
         {
