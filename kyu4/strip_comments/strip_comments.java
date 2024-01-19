@@ -2,6 +2,7 @@ public class StripComments {
 
 	public static String stripComments(String text, String[] commentSymbols) 
   {
+    System.out.println(text);
     int text_length = text.length();
     String result = "";
     char letter;
@@ -25,14 +26,13 @@ public class StripComments {
                 result = result.replaceAll("\\s*$", "");
             }                      
           }
-          System.out.println("salto condicional");
           result += '\n';
           end_comment = false;
         }
       }
       else if (letter == '\n')
       {
-        System.out.prinln("Salto obligado")
+        result = result.replaceAll("\\s*$", ""); 
         result += letter;
       }
       else
@@ -41,12 +41,11 @@ public class StripComments {
         {
           result = result.replaceAll("\\s*$", "");
         }
-        System.out.println("añdida letra");
         result += letter;
       }
     }
-    System.out.println("Fin");
     result = result.replaceAll("\\s*$", "");
+    System.out.println("RESULT: " + result);
     return result;
 	}
   
