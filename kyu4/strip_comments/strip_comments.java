@@ -15,27 +15,24 @@ public class StripComments {
       letter = text.charAt(i);
       if (symbol_check(letter, commentSymbols))
       {
+        if (i != 0 && text.charAt(i - 1) != '\n')
+        {
+          result = result.replaceAll("\\s*$", "");          
+        }
         end_comment = true;
         continue;
       }
       else if (end_comment)
       {
         if (end_check(letter))
-        {
-          if (i > 0 && i < (text_length - 1))
-          {
-            if (!empty_check(text, i))
-            {
-                result = result.replaceAll("\\s*$", "");
-            }                      
-          }
+        {                  
           result += '\n';
           end_comment = false;
         }
       }
       else if (letter == '\n')
       {
-        if (text.charAt(i - 1) != '\n' && i != 0)
+        if (i != 0 && text.charAt(i - 1) != '\n')
         {
           result = result.replaceAll("\\s*$", "");
         }
@@ -46,7 +43,10 @@ public class StripComments {
         result += letter;
       }
     }
-    result = result.replaceAll("\\s*$", "");
+    if (text.length() > 1 && text.charAt(text.length() - 2) != '\n')
+    {
+      result = result.replaceAll("\\s*$", "");
+    }
     System.out.println("RESULT: " + result);
     return result;
 	}
@@ -73,10 +73,5 @@ public class StripComments {
       return true;
     }
     return false;
-  }
-  
-  public static boolean empty_check(String text, int n)
-  {
-    return (text.charAt(n - 1) == text.charAt(n + 1)) ? true : false;
   }
 }
