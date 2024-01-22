@@ -25,13 +25,9 @@ public class Kata {
       }
       unsorted_result[i + j] = second[j];
     }
-    
-    for (int n = 0; n < total_length; n++)
-    {
-      System.out.println(unsorted_result[n]);
-    }
 
     //Checking 0s
+    checked = (check_0(first, first.length) || check_0(second, second.length)) ? false : true;
     for (int m = 0; m < total_length; m++)
     {
       if (unsorted_result[m] == 0)
@@ -41,11 +37,11 @@ public class Kata {
     }
     
     //Creating array result
-    result_length = (check_0(unsorted_result, total_length)) ? total_length - zeros : total_length - zeros + 1;
+    result_length = (!checked) ? total_length - zeros + 1: total_length - zeros;
     result = new int[result_length];
     for (int o = 0, p = 0; o < total_length; o++)
     {
-      if (check_0(unsorted_result, total_length) && !checked && unsorted_result[o] == 0)
+      if (check_0(first, first.length) || check_0(second, second.length) && !checked && unsorted_result[o] == 0)
       {
         result[p] = unsorted_result[o];
         p++;
@@ -59,7 +55,6 @@ public class Kata {
       p++;
     }
     
-    
     Arrays.sort(result);
     return result;
 	}
@@ -70,7 +65,6 @@ public class Kata {
     {
       if (array[k] == num)
       {
-        System.out.println("Sale true en k = " + k);
         return true;
       }
     }
@@ -85,7 +79,7 @@ public class Kata {
       {
         return true;
       }
-      return false;
     }
+      return false;
   }
 }
