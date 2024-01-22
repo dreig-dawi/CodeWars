@@ -3,32 +3,60 @@ import java.util.Arrays;
 public class Kata {
 	public static int[] mergeArrays(int[] first, int[] second) 
   {
-    int i = 0, total_length = first.length + second.length, result_length = 0;   
-		int[] result_unsorted = new int[total_length];
+    int i = 0, result_length = 0, zeros = 0;
+    int total_length = first.length + second.length;
+		int[] unsorted_result = new int[total_length], result;
+    boolean checked = false;
+    
+    //Copying the first array into result_unsorted
     for (i = 0; i < first.length; i++)
     {
-      result_unsorted[i] = first[i];  
+      unsorted_result[i] = first[i];  
     }
-    for (int j = 0; i < second.length; j++)
+    
+    //Copyng the second array into result unsorted
+    for (int j = 0; j < second.length; j++)
     {
-      if(check_duplicate(result_unsorted, second[j]))
+      
+      //Making sure we are not copying an existing number
+      if(check_duplicate(unsorted_result, second[j]))
       {
         continue;
       }
-      result_unsorted[i + j] = second[j];
+      unsorted_result[i + j] = second[j];
     }
-    for (int l = 0; l < total_length; l++)
+    
+    for (int n = 0; n < total_length; n++)
     {
-      if (result_unsorted[l] == 0)
-      {
-        result_length = l;
-      }
+      System.out.println(unsorted_result[n]);
     }
-    int[] result = new int[result_length];
+
+    //Checking 0s
     for (int m = 0; m < result_length; m++)
     {
-      result[m] = result_unsorted[m];
+      (unsorted_result[m] == j) ? zeros++ : continue;
     }
+    
+    //Creating array result
+    result_length = (check_0) ? total_length - zeros : total_length - zeros + 1;
+    result = new int[result_length];
+    for (int o = 0, p = 0; o < total_result; o++)
+    {
+      if (check_0 && !checked && unsorted_result[o] == 0)
+      {
+        result[p] = unsorted_result[o];
+        p++;
+        continue;
+      }
+      if (checked && unsorted_result[o] == 0)
+      {
+        continue;
+      }
+      result[p] = unsorted_result[o];
+      p++;
+    }
+    
+    
     Arrays.sort(result);
     return result;
 	}
@@ -39,6 +67,7 @@ public class Kata {
     {
       if (array[k] == num)
       {
+        System.out.println("Sale true en k = " + k);
         return true;
       }
     }
