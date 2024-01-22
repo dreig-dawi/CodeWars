@@ -3,6 +3,14 @@ import java.util.Arrays;
 public class Kata {
 	public static int[] mergeArrays(int[] first, int[] second) 
   {
+    for (int r = 0; r < first.length; r++)
+    {
+      System.out.println("F: " + first[r]);
+    }
+    for (int s = 0; s < second.length; s++)
+    {
+      System.out.println("S: " + second[s]);
+    }
     int i = 0, result_length, zeros = 0;
     int total_length = first.length + second.length;
 		int[] unsorted_result = new int[total_length], result;
@@ -11,6 +19,10 @@ public class Kata {
     //Copying the first array into result_unsorted
     for (i = 0; i < first.length; i++)
     {
+      if (check_duplicate(unsorted_result, first[i]))
+      {
+        continue;
+      }
       unsorted_result[i] = first[i];  
     }
     
@@ -41,8 +53,9 @@ public class Kata {
     result = new int[result_length];
     for (int o = 0, p = 0; o < total_length; o++)
     {
-      if (check_0(first, first.length) || check_0(second, second.length) && !checked && unsorted_result[o] == 0)
+      if ((check_0(first, first.length) || check_0(second, second.length)) && !checked && unsorted_result[o] == 0)
       {
+        checked = true;
         result[p] = unsorted_result[o];
         p++;
         continue;
@@ -54,8 +67,14 @@ public class Kata {
       result[p] = unsorted_result[o];
       p++;
     }
-    
+ 
     Arrays.sort(result);
+    for (i = 0; i < result_length; i++)
+    {
+      
+    System.out.println("R: " + result[i]);
+    }
+    
     return result;
 	}
   
@@ -65,7 +84,7 @@ public class Kata {
     {
       if (array[k] == num)
       {
-        return true;
+        return true
       }
     }
     return false;
