@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class Kata {
 	public static int[] mergeArrays(int[] first, int[] second) 
   {
-    int i = 0, result_length = 0, zeros = 0;
+    int i = 0, result_length, zeros = 0;
     int total_length = first.length + second.length;
 		int[] unsorted_result = new int[total_length], result;
     boolean checked = false;
@@ -32,17 +32,20 @@ public class Kata {
     }
 
     //Checking 0s
-    for (int m = 0; m < result_length; m++)
+    for (int m = 0; m < total_length; m++)
     {
-      (unsorted_result[m] == j) ? zeros++ : continue;
+      if (unsorted_result[m] == 0)
+      {
+        zeros++;
+      }
     }
     
     //Creating array result
-    result_length = (check_0) ? total_length - zeros : total_length - zeros + 1;
+    result_length = (check_0(unsorted_result, total_length)) ? total_length - zeros : total_length - zeros + 1;
     result = new int[result_length];
-    for (int o = 0, p = 0; o < total_result; o++)
+    for (int o = 0, p = 0; o < total_length; o++)
     {
-      if (check_0 && !checked && unsorted_result[o] == 0)
+      if (check_0(unsorted_result, total_length) && !checked && unsorted_result[o] == 0)
       {
         result[p] = unsorted_result[o];
         p++;
@@ -72,5 +75,17 @@ public class Kata {
       }
     }
     return false;
+  }
+  
+  public static boolean check_0(int[] int_array, int array_length)
+  {
+    for (int q = 0; q < array_length; q++)
+    {
+      if (int_array[q] == 0)
+      {
+        return true;
+      }
+      return false;
+    }
   }
 }
