@@ -8,11 +8,8 @@ class Permutations
   public static List<String> singlePermutations(String s) 
   {
     permutation("", s);
-    System.out.println("REsult: " + result);
-    for (int i = 0; i < result.size(); i++)
-    {      
-      result.remove(s.length() != result.get(i).length());
-    }
+    System.out.println("REsult: " + result);    
+    result.removeIf(n -> (n.length() != s.length()));
     return result;
   }
   
