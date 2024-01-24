@@ -1,5 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 
 class Permutations 
 {   
@@ -8,8 +10,13 @@ class Permutations
   public static List<String> singlePermutations(String s) 
   {
     permutation("", s);
-    System.out.println("REsult: " + result);    
+    System.out.println("REsult: " + result);
     result.removeIf(n -> (n.length() != s.length()));
+    
+    //Removing duplicates
+    Set<String> no_duplicates = new HashSet<String>(result);
+    result.clear();
+    result.addAll(no_duplicates);
     return result;
   }
   
