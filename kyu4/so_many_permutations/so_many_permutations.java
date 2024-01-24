@@ -1,41 +1,32 @@
 import java.util.List;
+import java.util.ArrayList;
 
 class Permutations 
 {   
+  static ArrayList<String> result = new ArrayList();
+  
   public static List<String> singlePermutations(String s) 
   {
-    List<Character> letters;
-    int length = s.length();
-    for (int i = 0; i < length; i++)
-    {
-      letters.add(i, s.charAt(i));
-    }
-    permutations(length, letters);
-    return null;
+    permutation("", s);
+    System.out.println("REsult: " + result);
+    result.removelf(s.length != )
+    return result;
   }
-
-  public static List<String> permutations(int length, List characters)
+  
+  public static void permutation(String prefix, String str) 
   {
-    if(length == 1) 
-    {
-      list_add(elements);
+    int n = str.length();
+    if (n == 0) 
+    {      
+      result.add(prefix);
+      System.out.println(prefix);
     }
     else 
     {
-       for(int i = 0; i < length - 1; i++) 
-       {
-         permutations(length - 1, character);
-         if(n % 2 == 0) 
-         {
-           swap(elements, i, length - 1);
-         }
-         else
-         {
-           swap(elements, 0, length -  1);
-         }
-       }
-      permutations(length - 1, character);
+      for (int i = 0; i < n; i++)
+      {            
+        permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+      }
     }
-    return null;
   }
 }
