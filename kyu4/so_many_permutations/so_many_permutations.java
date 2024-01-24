@@ -9,7 +9,10 @@ class Permutations
   {
     permutation("", s);
     System.out.println("REsult: " + result);
-    result.removelf(s.length != )
+    for (int i = 0; i < result.size(); i++)
+    {      
+      result.remove(s.length() != result.get(i).length());
+    }
     return result;
   }
   
