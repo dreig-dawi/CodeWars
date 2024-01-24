@@ -4,17 +4,17 @@ class Permutations
 {   
   public static List<String> singlePermutations(String s) 
   {
-    List<char> letters = new List<char>();
-    int length = s.length;
+    List<Character> letters;
+    int length = s.length();
     for (int i = 0; i < length; i++)
     {
-      letter.add(i, s.charAt(i));
+      letters.add(i, s.charAt(i));
     }
-    permutations(length);
+    permutations(length, letters);
     return null;
   }
 
-  public static List<String> permutations(int length, List<char> characters)
+  public static List<String> permutations(int length, List characters)
   {
     if(length == 1) 
     {
