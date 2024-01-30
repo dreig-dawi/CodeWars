@@ -3,18 +3,19 @@ import java.util.ArrayList;
 public class Solution
 {
   public static long maxProduct(int[] numbers, int sub_size)
-  {
-    System.out.println("SUB: " + sub_size);
-    
+  { 
     int highest = min(numbers);
     int length = numbers.length;
+    
+    //Solving for no array
+    if (length == 0)
+    {
+      return 0;
+    }
+    
     int highest_position = max_position(numbers);
     ArrayList<Integer> highests_numbers = new ArrayList<Integer>();
     ArrayList<Integer> positions = new ArrayList<Integer>();
-    for (int i = 0; i < length; i++)
-    {
-      System.out.println(numbers[i]);
-    }
     for(int j = 0; j < sub_size; j++)
     {
       for (int i = 0; i < length; i++)
@@ -22,11 +23,9 @@ public class Solution
         if (highest < numbers[i] && !restricted_position(positions, i))
         {
           highest = numbers[i];
-          System.out.println("H: " + highest);
           highest_position = i;
         }        
       }
-      System.out.println("SALTO");
       positions.add(highest_position);
       highests_numbers.add(highest);
       highest = min(numbers);
@@ -36,7 +35,6 @@ public class Solution
     long result = highests_numbers.get(0);
     for (int i = 1; i < highests_numbers.size(); i++)
     {
-      System.out.println("Altos: " + highests_numbers.get(i) + "..Resutl: " + result);
       result *= highests_numbers.get(i);
     }
     return result;
@@ -48,7 +46,6 @@ public class Solution
     {
       if (restricted.get(i) == position)
       {
-        System.out.println("Restrignida: " + restricted.get(i));
         return true;
       }
     }
