@@ -2,15 +2,15 @@ public class NumberAndIPAddress
 {
 	public static String numberAndIPaddress(String s) 
   {
-    String number, result;
+    String number = "", result;
     char letter;
     int length = s.length();
-    long binary_result, decimal_result;
+    long numeric_result;
     
     //Checking if it is an IP
 		if (s.matches("^(.*?([.])*)$"))
     {
-      int binary1, binary2, binary3;
+      int binary1 = 0, binary2 = 0, binary3 = 0;
       int dots = 0;
       for (int i = 0; i < length; i++)
       {
@@ -37,9 +37,8 @@ public class NumberAndIPAddress
         }
       }
       result = binary1 + binary2 + binary3 + number;
-      binary_result = Long.parseLong(result);
-      decimal_result = Long.parseLong(binary_result, 2);
-      result = "" + decimal_result;
+      numeric_result = Long.parseLong(result, 2);
+      result = "" + numeric_result;
       return result;      
     }
     
