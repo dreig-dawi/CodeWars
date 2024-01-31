@@ -10,10 +10,6 @@ public class FindIndexOfSubArray
     {
       //Checking if the first part fo the array si sorted
       int first = 3;
-      for (int i = 0; i < arr.length; i++)
-      {        
-        System.out.println(arr[i]);
-      }
       
       int[] result = new int[2];
       
