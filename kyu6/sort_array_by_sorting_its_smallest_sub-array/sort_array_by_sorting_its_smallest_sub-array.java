@@ -8,6 +8,8 @@ public class FindIndexOfSubArray
 
     public int[] findIndexOfSubArray()
     {
+      //Checking if the first part fo the array si sorted
+      int first = 3;
       for (int i = 0; i < arr.length; i++)
       {        
         System.out.println(arr[i]);
@@ -21,8 +23,7 @@ public class FindIndexOfSubArray
         return result;
       }
       
-      boolean checked = false, ascending = check_ascending(arr), descending = check_descending(arr);
-      
+      boolean checked = false, ascending = check_ascending(arr, first), descending = check_descending(arr, first);
       //Calculation subarray start position
       if (ascending)
       {
@@ -56,17 +57,31 @@ public class FindIndexOfSubArray
       }
       else
       {
+        while (first < arr.length - 1)
+        {   
+          first++;
+          ascending = check_ascending(arr, first);
+          descending = check_descending(arr, first);
+          if (ascending || descending)
+          {
+            result[1] = first - 2;
+            return result;
+          }
+        }
         return result;
       }
-      System.out.println(result[0] + ".." + result[1]);
+      if (result[0] != 0 && result[1] == 0)
+      {
+        result[1] = arr.length - 1;
+      }
       return result;
     }
   
-  public static boolean check_ascending(int[] arr)
+  public static boolean check_ascending(int[] arr, int n)
   {
-    for (int i = 0; i < 3; i++)
+    for (int i = n; i > n - 3; i--)
     {
-      if (arr[i] > arr[i + 1])
+      if (arr[i] < arr[i - 1])
       {
         return false;
       }
@@ -74,11 +89,11 @@ public class FindIndexOfSubArray
     return true;
   }
   
-  public static boolean check_descending(int[] arr)
+  public static boolean check_descending(int[] arr, int n)
   {
-    for (int i = 0; i < 3; i++)
+    for (int i = n; i > n - 3; i--)
     {
-      if (arr[i] < arr[i + 1])
+      if (arr[i] > arr[i - 1])
       {
         return false;
       }
