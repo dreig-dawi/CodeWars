@@ -16,11 +16,11 @@ public class Kata
             word = i;
             word_check = true;
           }
-          else if (word_check && (text.charAt(i) == ' ' || i == length - 1))
+          else if (word_check && (text.charAt(i) == ' ' || check_last(text, i)))
           {
             word_check = false;
             result += (int)text.charAt(word);
-            if (i - word > 1)
+            if (i - word > 2)
             {              
               result += text.charAt(i - 1);
               for (int j = word + 2; j < i - 1; j++)
@@ -29,10 +29,30 @@ public class Kata
               }
               result += text.charAt(word + 1);
             }
-            result += " ";
+            else if (i - word == 2)
+            {
+              if (check_last(text, i))
+              {                
+                result += text.charAt(i);
+              }
+              result += text.charAt(i - 1);
+            }
+            if (!check_last(text, i))
+            {              
+              result += " ";
+            }
           }
         }
       }
       return result;
     }
+  
+  public static boolean check_last(String text, int n)
+  {
+    if(text.length() - n == 1)
+    {
+      return true;
+    }
+    return false;
+  }
 }
