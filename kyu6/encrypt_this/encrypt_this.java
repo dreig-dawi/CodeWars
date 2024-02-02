@@ -16,7 +16,7 @@ public class Kata
             word = i;
             word_check = true;
           }
-          else if (word_check && (text.charAt(i) == ' ' || check_last(text, i)))
+          else if (word_check && text.charAt(i) == ' ')
           {
             word_check = false;
             result += (int)text.charAt(word);
@@ -31,16 +31,9 @@ public class Kata
             }
             else if (i - word == 2)
             {
-              if (check_last(text, i))
-              {                
-                result += text.charAt(i);
-              }
               result += text.charAt(i - 1);
             }
-            if (!check_last(text, i))
-            {              
-              result += " ";
-            }
+            result += " ";
           }
         }
       }
