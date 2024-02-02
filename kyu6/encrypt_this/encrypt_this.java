@@ -35,6 +35,15 @@ public class Kata
             }
             result += " ";
           }
+          else if (check_last(text, i))
+          {
+            result += "" + (int)text.charAt(word) + text.charAt(i);
+            for (int j = word + 2; j < length - 1; j++)
+            {
+              result += text.charAt(j);
+            }
+            result += text.charAt(word + 1);
+          }
         }
       }
       return result;
