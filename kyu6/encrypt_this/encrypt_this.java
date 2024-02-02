@@ -35,14 +35,17 @@ public class Kata
             }
             result += " ";
           }
-          else if (check_last(text, i))
+          if (check_last(text, i) && word_check)
           {
-            result += "" + (int)text.charAt(word) + text.charAt(i);
+            result += check_last(text, word) ? "" + (int)text.charAt(word) : "" + (int)text.charAt(word) + text.charAt(i);
             for (int j = word + 2; j < length - 1; j++)
             {
               result += text.charAt(j);
             }
-            result += text.charAt(word + 1);
+            if (!check_last(text, word) && i - word != 1)
+            {              
+              result += text.charAt(word + 1);
+            }
           }
         }
       }
