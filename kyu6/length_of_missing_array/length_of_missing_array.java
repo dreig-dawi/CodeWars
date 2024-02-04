@@ -5,7 +5,12 @@ public class Kata
 {
   public static int getLengthOfMissingArray(Object[][] arrayOfArrays)
   {
+    if (arrayOfArrays == null)
+    {
+      return 0;
+    }
     int arrays_quantity = arrayOfArrays.length;
+    System.out.println(arrays_quantity);
     if (arrays_quantity == 0)
     {
       return 0;
@@ -13,7 +18,15 @@ public class Kata
     ArrayList<Integer> length = new ArrayList<Integer>();
     for (int i = 0; i < arrays_quantity; i++)
     {
+      if (arrayOfArrays[i] == null)
+      {
+        return 0;
+      }
       length.add(arrayOfArrays[i].length);
+      if (length.get(i) == 0)
+      {
+        return 0;
+      }
     }
     Collections.sort(length);
     for (int i = 1; i < length.size(); i++)
