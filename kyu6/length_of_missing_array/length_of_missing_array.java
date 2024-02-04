@@ -10,7 +10,6 @@ public class Kata
       return 0;
     }
     int arrays_quantity = arrayOfArrays.length;
-    System.out.println(arrays_quantity);
     if (arrays_quantity == 0)
     {
       return 0;
