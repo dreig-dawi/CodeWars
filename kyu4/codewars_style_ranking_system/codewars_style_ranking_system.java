@@ -1,49 +1,51 @@
-public class User {
-    int rank;
-    int progress;
-
-    public User() {
-        this.rank = -8;
-        this.progress = 0;
+class User
+{
+  int rank = -8;
+  int progress = 0;
+  
+  public void incProgress(int act_rank)
+  { 
+    
+    //Checking errors
+    if (act_rank == 0 || act_rank > 8 || act_rank < -8)
+    {
+      throw new IllegalArgumentException("Rank out of bounds");
     }
-
-    public int getRank() {
-        return rank;
+    
+    //Calculating rank
+    if (act_rank == rank)
+    {
+      progress += 3;
     }
-
-    public int getProgress() {
-        return progress;
+    else if (act_rank == rank - 1 || (act_rank == -1 && rank == 1))
+    {
+      progress++;
     }
-
-    private int calculateProgress(int activityRank) {
-        if (activityRank < -8 || activityRank > 8 || activityRank == 0) {
-            throw new IllegalArgumentException("Invalid activity rank");
-        }
-
-        if (rank == 8) {
-            return 0;
-        }
-
-        int rankDiff = activityRank - rank;
-
-        if (rank < 0 && activityRank > 0) rankDiff--;
-        else if (rank > 0 && activityRank < 0) rankDiff++;
-
-        if (rankDiff == 0) return 3;
-        if (rankDiff == -1) return 1;
-        if (rankDiff < -1) return 0;
-        return 10 * rankDiff * rankDiff;
+    else if (act_rank > rank)
+    {
+      int d = act_rank - rank;
+      if (act_rank > 0 && rank < 0)
+      {
+        d--;
+      }
+      progress += 10 * d * d;
     }
-
-    public void incProgress(int activityRank) {
-        int progressPoints = calculateProgress(activityRank);
-
-        progress += progressPoints;
-        while (progress >= 100) {
-            progress -= 100;
-            if (rank < 0 && rank + 1 == 0) rank = 1;
-            else if (rank < 8) rank++;
-            if (rank == 8) progress = 0; 
-        }
+    
+    //Calculating progress
+    while (progress >= 100)
+    {
+      rank++;
+      if (rank == 0)
+      {
+        rank++;
+      }
+      progress -= 100;
     }
+    
+    //Max rank
+    if (rank == 8)
+    {
+      progress = 0;
+    }
+  }
 }
